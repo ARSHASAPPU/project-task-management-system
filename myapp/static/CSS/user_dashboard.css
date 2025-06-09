@@ -4,8 +4,7 @@
 }
 
 body {
-
-    background-image: url('../images/bg.jpg');
+    background-image: url('../images/user.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -218,7 +217,7 @@ section > h2 {
   user-select: none;
 }
 
-/* Flex grid for project/task/user cards */
+/* Flex grid for task cards */
 .card-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -287,31 +286,16 @@ section > h2 {
   background-color: #2e267c;
 }
 
-/* Danger button variant */
-.button.danger {
-  background-color: #dc2626;
+/* Notification styles */
+.notification-list {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  box-shadow: 0 3px 8px rgb(0 0 0 / 0.06);
 }
-.button.danger:hover,
-.button.danger:focus {
-  background-color: #b91c1c;
-  outline: none;
-}
-.button.danger:active {
-  background-color: #7f1d1d;
-}
-
-/* Activity log list */
-.activity-list {
-  max-height: 200px;
-  overflow-y: auto;
-  padding-left: 1rem;
-  border-left: 3px solid #4338ca;
-  color: #c7ddd4;
-  font-size: 14px;
-  user-select: text;
-}
-.activity-list li {
+.notification-item {
   margin-bottom: 0.5rem;
+  color: #374151;
 }
 
 /* Footer styles */
@@ -320,7 +304,7 @@ section > h2 {
   border-top: 1px solid #e5e7eb;
   color: #6b7280;
   font-size: 14px;
-  /* padding: 1.5rem 1rem; */
+  padding: 1.5rem 1rem;
   text-align: center;
   user-select: none;
   box-shadow: 0 -1px 3px rgb(0 0 0 / 0.06);
