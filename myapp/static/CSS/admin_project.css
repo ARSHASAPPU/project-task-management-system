@@ -1,0 +1,384 @@
+:root {
+  --color-bg: #ffffff;
+  --color-text: #6b7280;
+  --color-text-strong: #111827;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-danger: #dc2626;
+  --color-danger-hover: #b91c1c;
+  --shadow-light: rgba(0, 0, 0, 0.07);
+  --border-radius: 0.75rem;
+  --font-family: 'Poppins', sans-serif;
+  --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  padding: 4rem 1rem 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+}
+
+h1.main-title {
+  font-weight: 800;
+  font-size: 48px;
+  color: var(--color-text-strong);
+  margin-bottom: 3rem;
+  user-select: none;
+  text-align: center;
+}
+
+.card {
+  background: var(--color-bg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 3px 12px black;
+  padding: 3rem 3.5rem;
+  margin-bottom: 4rem;
+  overflow-x: auto;
+}
+
+.add-project-btn {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--color-bg);
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: 30px;
+  padding: 0.9rem 3rem;
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
+  cursor: pointer;
+  transition: background-color var(--transition), transform var(--transition),
+    box-shadow var(--transition);
+  user-select: none;
+  display: block;
+  margin-bottom: 2.5rem;
+  margin-left: auto;
+}
+.add-project-btn:hover,
+.add-project-btn:focus {
+  background-color: var(--color-primary-hover);
+  box-shadow: 0 8px 22px rgba(29, 78, 216, 0.4);
+  transform: scale(1.05);
+  outline: none;
+}
+
+.project-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 1rem;
+}
+
+.project-table thead tr {
+  color: #374151;
+  font-weight: 700;
+  font-size: 1rem;
+  user-select: none;
+}
+
+.project-table thead th {
+  padding: 1rem 1.5rem 1.25rem 1.5rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.project-table tbody tr {
+  background: #fafafa;
+  border-radius: var(--border-radius);
+  box-shadow: 0 3px 14px var(--shadow-light);
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.project-table tbody tr:hover {
+  box-shadow: 0 6px 26px rgba(0, 0, 0, 0.15);
+}
+
+.project-table tbody td {
+  padding: 1rem 1.5rem;
+  color: var(--color-text);
+  vertical-align: middle;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.project-table tbody td:first-child a {
+  color: var(--color-primary);
+  font-weight: 700;
+  transition: color var(--transition), transform var(--transition);
+  text-decoration: none;
+}
+
+.project-table tbody td:first-child a:hover,
+.project-table tbody td:first-child a:focus {
+  color: var(--color-primary-hover);
+  transform: scale(1.05);
+  outline: none;
+  text-decoration: underline;
+}
+
+.actions {
+  display: flex;
+  gap: 0.9rem;
+  justify-content: flex-start;
+}
+
+button.action-btn {
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 12px;
+  border: 2px solid var(--color-primary);
+  background: none;
+  color: var(--color-primary);
+  transition: background-color var(--transition), color var(--transition),
+    transform var(--transition);
+  cursor: pointer;
+  user-select: none;
+}
+
+button.action-btn:hover,
+button.action-btn:focus {
+  background-color: var(--color-primary);
+  color: var(--color-bg);
+  outline-offset: 3px;
+  outline: 3px solid var(--color-primary-hover);
+  transform: scale(1.1);
+}
+
+button.delete-btn {
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+button.delete-btn:hover,
+button.delete-btn:focus {
+  background-color: var(--color-danger);
+  color: var(--color-bg);
+  outline-offset: 3px;
+  outline: 3px solid var(--color-danger-hover);
+  transform: scale(1.1);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+  z-index: 1100;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-content {
+  background: var(--color-bg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 3rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  font-size: 2.7rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--color-text-strong);
+  user-select: none;
+  line-height: 1.1;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-strong);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  width: 2.5rem;
+  height: 2.5rem;
+  transition: color var(--transition);
+  user-select: none;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: var(--color-primary);
+  outline-offset: 0;
+  outline: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+label {
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--color-text-strong);
+  user-select: none;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+input[type='text'],
+input[type='date'],
+textarea,
+select {
+  font-family: var(--font-family);
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.65rem 1rem;
+  border-radius: var(--border-radius);
+  border: 2.5px solid #d1d5db;
+  color: var(--color-text-strong);
+  outline-offset: 2px;
+  outline-color: transparent;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  resize: vertical;
+  min-height: 40px;
+}
+
+input[type='text']:focus,
+input[type='date']:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 9px rgba(37, 99, 235, 0.45);
+  outline-color: var(--color-primary);
+}
+
+textarea {
+  min-height: 120px;
+}
+
+select[multiple] {
+  min-height: 140px;
+  padding-top: 0.75rem;
+}
+
+.form-buttons {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+}
+
+button.primary-btn {
+  background-color: var(--color-primary);
+  border: none;
+  padding: 1.1rem 3rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-radius: var(--border-radius);
+  color: var(--color-bg);
+  box-shadow: 0 7px 21px rgba(37, 99, 235, 0.35);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+button.primary-btn:hover,
+button.primary-btn:focus {
+  background-color: var(--color-primary-hover);
+  outline-offset: 3px;
+  outline: 3px solid var(--color-primary-hover);
+  transform: scale(1.05);
+  outline-offset: 3px;
+}
+
+button.secondary-btn {
+  background-color: #e4e7eb;
+  border: none;
+  padding: 1.1rem 3rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-radius: var(--border-radius);
+  color: var(--color-text-strong);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+  cursor: pointer;
+  user-select: none;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+button.secondary-btn:hover,
+button.secondary-btn:focus {
+  background-color: #cfd2d7;
+  outline-offset: 3px;
+  outline: 3px solid var(--color-primary-hover);
+  transform: scale(1.05);
+}
+
+
+@media (max-width: 850px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .card {
+    padding: 2rem 2rem;
+  }
+  .modal-content {
+    padding: 2rem 2rem;
+    max-width: 90vw;
+  }
+  h1.main-title {
+    font-size: 3rem;
+  }
+  .modal-header h2 {
+    font-size: 2.3rem;
+  }
+  button.primary-btn,
+  button.secondary-btn {
+    font-size: 1rem;
+    padding: 0.85rem 2.25rem;
+  }
+  .add-project-btn {
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
+  }
+}

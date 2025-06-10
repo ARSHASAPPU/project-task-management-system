@@ -1,0 +1,193 @@
+{% load static%}
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Project Management</title>
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet" />
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoI61A2mVCW1quf1eUWjvbWu3F4U8SI5FELjMk7y5o4q+Nc"
+    crossorigin="anonymous"
+  />
+  <!-- Custom CSS -->
+ <link href="{% static 'CSS/admin_project.css'%}" rel="stylesheet" />
+</head>
+<body>
+  <main class="container" role="main" aria-labelledby="pageTitle">
+    <h1 id="pageTitle" class="main-title">Admin Project Management</h1>
+
+    <section class="card" role="region" aria-labelledby="projectListTitle">
+      <h2 id="projectListTitle" class="section-title">Project List</h2>
+      <button class="add-project-btn" type="button" id="openModalBtn" aria-haspopup="dialog" aria-controls="addProjectModal">
+        + Add Project
+      </button>
+
+      <div class="table-responsive no-scrollbar">
+        <table role="grid" aria-describedby="projectListDesc" class="table project-table">
+          <caption id="projectListDesc" class="visually-hidden">List of projects with their details and actions</caption>
+          <thead>
+            <tr>
+              <th scope="col">Project Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">End Date</th>
+              <th scope="col">Total Tasks</th>
+              <th scope="col">Assigned Members</th>
+              <th scope="col" class="actions-header">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="#" class="project-link">Website Redesign</a></td>
+              <td>Improve UI/UX of main site.</td>
+              <td>2024-02-01</td>
+              <td>2024-05-30</td>
+              <td>14</td>
+              <td>Alice, Bob, Charlie</td>
+              <td class="actions">
+                <button class="action-btn" aria-label="View Website Redesign project">View</button>
+                <button class="action-btn" aria-label="Edit Website Redesign project">Edit</button>
+                <button class="action-btn delete-btn" aria-label="Delete Website Redesign project" onclick="if(confirm('Are you sure you want to delete this project?')) alert('Deleted');">Delete</button>
+              </td>
+            </tr>
+            <tr>
+              <td><a href="#" class="project-link">Mobile App Launch</a></td>
+              <td>Release iOS and Android apps.</td>
+              <td>2024-03-15</td>
+              <td>2024-09-15</td>
+              <td>22</td>
+              <td>David, Emily</td>
+              <td class="actions">
+                <button class="action-btn" aria-label="View Mobile App Launch project">View</button>
+                <button class="action-btn" aria-label="Edit Mobile App Launch project">Edit</button>
+                <button class="action-btn delete-btn" aria-label="Delete Mobile App Launch project" onclick="if(confirm('Are you sure you want to delete this project?')) alert('Deleted');">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div id="addProjectModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true" tabindex="-1">
+    <div class="modal-content" role="document">
+      <div class="modal-header">
+        <h2 id="modalTitle" class="modal-title">Add New Project</h2>
+        <button class="close-btn" aria-label="Close modal" id="closeModalBtn">&times;</button>
+      </div>
+      <form id="addProjectForm" novalidate>
+        <div class="form-group">
+          <label for="projectTitleInput">Project Title <span class="required">*</span></label>
+          <input type="text" id="projectTitleInput" name="title" required autocomplete="off" class="form-control" />
+          <div class="error-message" id="titleError">Please enter a project title.</div>
+        </div>
+        <div class="form-group mt-3">
+          <label for="projectDescriptionInput">Description</label>
+          <textarea id="projectDescriptionInput" name="description" rows="4" autocomplete="off" class="form-control"></textarea>
+        </div>
+        <div class="row g-3 mt-3">
+          <div class="col-6">
+            <label for="startDateInput">Start Date <span class="required">*</span></label>
+            <input type="date" id="startDateInput" name="start_date" required class="form-control" />
+            <div class="error-message" id="startDateError">Please select a start date.</div>
+          </div>
+          <div class="col-6">
+            <label for="endDateInput">End Date <span class="required">*</span></label>
+            <input type="date" id="endDateInput" name="end_date" required class="form-control" />
+            <div class="error-message" id="endDateError">Please select an end date.</div>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <label for="assignedMembersSelect">Assign Team Members</label>
+          <select id="assignedMembersSelect" name="assigned_members" multiple size="6" class="form-select" aria-describedby="multiSelectHelp">
+            <option value="1">Alice</option>
+            <option value="2">Bob</option>
+            <option value="3">Charlie</option>
+            <option value="4">David</option>
+            <option value="5">Emily</option>
+            <option value="6">Frank</option>
+          </select>
+          <small class="form-text text-muted" id="multiSelectHelp">Hold Ctrl (Cmd on Mac) to select multiple.</small>
+        </div>
+        <div class="form-buttons mt-4 d-flex justify-content-end gap-3">
+          <button type="submit" class="btn btn-primary btn-lg px-4">Save Project</button>
+          <button type="button" class="btn btn-secondary btn-lg px-4" id="modalCancelBtn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle (Popper + Bootstrap JS) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+  <!-- Custom JS -->
+  <script>
+    const modal = document.getElementById('addProjectModal');
+    const openModalBtn = document.getElementById('openModalBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const cancelModalBtn = document.getElementById('modalCancelBtn');
+    const form = document.getElementById('addProjectForm');
+
+    function openModal() {
+      modal.setAttribute('aria-hidden', 'false');
+      modal.classList.add('active');
+      modal.querySelector('input, textarea, select').focus();
+    }
+    function closeModal() {
+      modal.setAttribute('aria-hidden', 'true');
+      modal.classList.remove('active');
+      openModalBtn.focus();
+      form.reset();
+      clearErrors();
+    }
+
+    openModalBtn.addEventListener('click', openModal);
+    closeModalBtn.addEventListener('click', closeModal);
+    cancelModalBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeModal();
+    });
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      clearErrors();
+      let valid = true;
+      if (!form.title.value.trim()) {
+        showError('titleError');
+        valid = false;
+      }
+      if (!form.start_date.value) {
+        showError('startDateError');
+        valid = false;
+      }
+      if (!form.end_date.value) {
+        showError('endDateError');
+        valid = false;
+      }
+      if (form.start_date.value && form.end_date.value && form.end_date.value < form.start_date.value) {
+        alert('End date cannot be before start date.');
+        valid = false;
+      }
+      if (valid) {
+        alert('Project saved! (Simulation)');
+        closeModal();
+      }
+    });
+
+    function showError(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+    function clearErrors() {
+      document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+    }
+  </script>
+</body>
+</html>
+

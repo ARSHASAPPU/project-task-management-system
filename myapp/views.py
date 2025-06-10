@@ -9,4 +9,5 @@ def admin_dash(request):
     return render(request,'admin_dashboard.html')
 def user_dash(request):
     return render(request,'user_dashboard.html')
-
+def admin_project(request):
+    return render(request,'admin_project_page.html')
