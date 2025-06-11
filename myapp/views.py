@@ -11,3 +11,5 @@ def user_dash(request):
     return render(request,'user_dashboard.html')
 def admin_project(request):
     return render(request,'admin_project_page.html')
+def admin_task(request):
+    return render(request,'admin_task_page.html')
