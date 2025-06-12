@@ -8,7 +8,7 @@ body {
   color: #a78bfa !important;
 }
 
-/* Gradient button for Add Task and modal submit */
+/* Gradient button for Add User and modal submit */
 .btn-gradient {
   background: linear-gradient(135deg, #8b5cf6, #06b6d4);
   border: none;
@@ -130,4 +130,37 @@ body {
   .btn-gradient {
     width: 100%;
   }
+  .d-flex.justify-content-between {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .d-flex.justify-content-between h2 {
+    margin-bottom: 0.75rem;
+  }
+  .user-table tbody td {
+    padding: 12px 0.75rem !important;
+    font-size: 0.9rem !important;
+  }
+  .btn-icon {
+    font-size: 1.1rem;
+    padding: 0.2rem;
+  }
+}
+
+/* Utilities for text purple */
+.text-purple {
+  color: #a78bfa !important;
+}
+
+/* Focus outlines for accessibility */
+.btn:focus,
+.form-control:focus,
+.form-select:focus {
+  outline-offset: 2px !important;
+}
+
+/* Table header purple text */
+.table-dark thead th.text-purple {
+  color: #a78bfa !important;
+  user-select: none;
 }

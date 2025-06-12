@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin_dash/',views.admin_dash),
     path('user_dash/',views.user_dash),
     path('admin_project/',views.admin_project),
-    path('admin_task/',views.admin_task)
+    path('admin_task/',views.admin_task),
+    path('admin_user_manage/',views.admin_user_manage)
     
 ]

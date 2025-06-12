@@ -1,0 +1,232 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Management - Admin</title>
+
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Google Fonts Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet" />
+  <!-- Google Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'CSS/ad_user_manage.css'%}" />
+</head>
+<body class="bg-dark text-light">
+
+  <header class="container my-4">
+    <h1 class="display-5 fw-bold text-purple">User Management</h1>
+  </header>
+
+  <main class="container bg-secondary rounded-4 p-4 shadow-lg">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+      <h2 class="h5 text-white-50 m-0">Team Members</h2>
+      <button type="button" class="btn btn-gradient btn-lg" data-bs-toggle="modal" data-bs-target="#userModal" id="openAddUserBtn">
+        Add User
+      </button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-dark table-striped align-middle rounded-3 user-table">
+        <thead>
+          <tr>
+            <th scope="col" class="text-purple">Name</th>
+            <th scope="col" class="text-purple">Email</th>
+            <th scope="col" class="text-purple text-uppercase">Role</th>
+            <th scope="col" class="text-purple">Joined Date</th>
+            <th scope="col" class="text-purple">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody">
+          <tr>
+            <td class="fw-semibold text-purple">Alice Johnson</td>
+            <td class="fst-italic text-white-50">alice.johnson@example.com</td>
+            <td class="text-uppercase text-info fw-bold">Admin</td>
+            <td class="text-muted small">2023-01-10</td>
+            <td class="text-center">
+              <button class="btn btn-icon btn-icon-edit me-2" title="Edit Alice Johnson" aria-label="Edit Alice Johnson">
+                <span class="material-icons">edit</span>
+              </button>
+              <button class="btn btn-icon btn-icon-delete" title="Delete Alice Johnson" aria-label="Delete Alice Johnson">
+                <span class="material-icons">delete</span>
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td class="fw-semibold text-purple">Bob Smith</td>
+            <td class="fst-italic text-white-50">bob.smith@example.com</td>
+            <td class="text-uppercase text-info fw-bold">Team Member</td>
+            <td class="text-muted small">2023-02-18</td>
+            <td class="text-center">
+              <button class="btn btn-icon btn-icon-edit me-2" title="Edit Bob Smith" aria-label="Edit Bob Smith">
+                <span class="material-icons">edit</span>
+              </button>
+              <button class="btn btn-icon btn-icon-delete" title="Delete Bob Smith" aria-label="Delete Bob Smith">
+                <span class="material-icons">delete</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Bootstrap Modal for Add/Edit User -->
+  <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md">
+      <div class="modal-content bg-secondary text-light rounded-4 shadow-lg border-0">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title text-purple fw-bold" id="userModalLabel">Add User</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="userForm" class="modal-body pt-0" novalidate>
+          <div class="mb-3">
+            <label for="fullName" class="form-label fw-semibold">Full Name</label>
+            <input type="text" class="form-control form-control-dark" id="fullName" name="fullName" placeholder="Enter full name" required autocomplete="name" />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label fw-semibold">Email</label>
+            <input type="email" class="form-control form-control-dark" id="email" name="email" placeholder="name@example.com" required autocomplete="email" />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label fw-semibold">Password</label>
+            <input type="password" class="form-control form-control-dark" id="password" name="password" placeholder="Enter password" required autocomplete="new-password" minlength="8" />
+          </div>
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label fw-semibold">Confirm Password</label>
+            <input type="password" class="form-control form-control-dark" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" required autocomplete="new-password" minlength="8" />
+          </div>
+          <div class="mb-4">
+            <label for="roleSelect" class="form-label fw-semibold">Role</label>
+            <select class="form-select form-select-dark" id="roleSelect" name="roleSelect" required>
+              <option value="" selected disabled>Select role</option>
+              <option value="Admin">Admin</option>
+              <option value="Team Member">Team Member</option>
+            </select>
+          </div>
+          <div class="d-flex justify-content-end gap-3">
+            <button type="submit" class="btn btn-gradient fw-semibold" id="submitUserBtn">Add User</button>
+            <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Inline script placeholder for form interactivity can be placed below or separately -->
+  <script>
+    // Minimal script for demo, you can expand as needed
+
+    const userModalEl = document.getElementById('userModal');
+    const userModal = new bootstrap.Modal(userModalEl);
+    const userForm = document.getElementById('userForm');
+    const userTableBody = document.getElementById('userTableBody');
+    const userModalLabel = document.getElementById('userModalLabel');
+    const submitUserBtn = document.getElementById('submitUserBtn');
+
+    let modalMode = 'add'; // 'add' or 'edit';
+    let editingRow = null;
+
+    // Open Add User modal
+    document.getElementById('openAddUserBtn').addEventListener('click', () => {
+      modalMode = 'add';
+      userModalLabel.textContent = 'Add User';
+      submitUserBtn.textContent = 'Add User';
+      userForm.reset();
+      editingRow = null;
+    });
+
+    // Handle form submit
+    userForm.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const fullName = userForm.fullName.value.trim();
+      const email = userForm.email.value.trim();
+      const password = userForm.password.value;
+      const confirmPassword = userForm.confirmPassword.value;
+      const role = userForm.roleSelect.value;
+
+      if(password !== confirmPassword){
+        alert("Passwords do not match.");
+        return;
+      }
+
+      if(modalMode === 'add'){
+        addUser(fullName, email, role);
+      } else if(modalMode === 'edit' && editingRow){
+        updateUser(fullName, email, role);
+      }
+
+      userModal.hide();
+    });
+
+    // Add User row
+    function addUser(name, email, role){
+      const tr = document.createElement('tr');
+      const joinedDate = new Date().toISOString().slice(0,10);
+
+      tr.innerHTML = `
+        <td class="fw-semibold text-purple">${name}</td>
+        <td class="fst-italic text-white-50">${email}</td>
+        <td class="text-uppercase text-info fw-bold">${role}</td>
+        <td class="text-muted small">${joinedDate}</td>
+        <td class="text-center">
+          <button class="btn btn-icon btn-icon-edit me-2" title="Edit ${name}" aria-label="Edit ${name}">
+            <span class="material-icons">edit</span>
+          </button>
+          <button class="btn btn-icon btn-icon-delete" title="Delete ${name}" aria-label="Delete ${name}">
+            <span class="material-icons">delete</span>
+          </button>
+        </td>
+      `;
+      userTableBody.appendChild(tr);
+      attachRowActions(tr);
+    }
+
+    // Attach edit/delete events
+    function attachRowActions(row){
+      const editBtn = row.querySelector('.btn-icon-edit');
+      const delBtn = row.querySelector('.btn-icon-delete');
+
+      editBtn.addEventListener('click', () => {
+        modalMode = 'edit';
+        editingRow = row;
+        userModalLabel.textContent = 'Edit User';
+        submitUserBtn.textContent = 'Update User';
+
+        userForm.fullName.value = row.children[0].textContent;
+        userForm.email.value = row.children[1].textContent;
+        userForm.password.value = '';
+        userForm.confirmPassword.value = '';
+        userForm.roleSelect.value = row.children[2].textContent;
+
+        userModal.show();
+      });
+
+      delBtn.addEventListener('click', () => {
+        if(confirm(`Are you sure you want to delete ${row.children[0].textContent}?`)){
+          row.remove();
+        }
+      });
+    }
+
+    // Update user info
+    function updateUser(name, email, role){
+      if(!editingRow) return;
+      editingRow.children[0].textContent = name;
+      editingRow.children[1].textContent = email;
+      editingRow.children[2].textContent = role;
+    }
+
+    // Initialize existing rows with events
+    document.querySelectorAll('#userTableBody tr').forEach(attachRowActions);
+
+  </script>
+</body>
+</html>
+
