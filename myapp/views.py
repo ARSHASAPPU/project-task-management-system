@@ -15,3 +15,5 @@ def admin_task(request):
     return render(request,'admin_task_page.html')
 def admin_user_manage(request):
     return render(request,'admin_user_management_page.html')
+def admin_profile(request):
+    return render(request,'admin_profile.html')

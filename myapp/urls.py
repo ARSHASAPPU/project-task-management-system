@@ -10,6 +10,6 @@ urlpatterns = [
     path('user_dash/',views.user_dash),
     path('admin_project/',views.admin_project),
     path('admin_task/',views.admin_task),
-    path('admin_user_manage/',views.admin_user_manage)
-    
+    path('admin_user_manage/',views.admin_user_manage),
+    path('admin_profile/',views.admin_profile)
 ]
