@@ -7,8 +7,6 @@ def login_page(request):
     return render(request,'login.html')
 def admin_dash(request):
     return render(request,'admin_dashboard.html')
-def user_dash(request):
-    return render(request,'user_dashboard.html')
 def admin_project(request):
     return render(request,'admin_project_page.html')
 def admin_task(request):
@@ -17,3 +15,7 @@ def admin_user_manage(request):
     return render(request,'admin_user_management_page.html')
 def admin_profile(request):
     return render(request,'admin_profile.html')
+def user_dash(request):
+    return render(request,'user_dashboard.html')
+def user_task(request):
+    return render(request,'user_task_page.html')
