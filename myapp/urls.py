@@ -12,5 +12,6 @@ urlpatterns = [
     path('admin_user_manage/',views.admin_user_manage),
     path('admin_profile/',views.admin_profile),
     path('user_dash/',views.user_dash),
-    path('user_task/',views.user_task)
+    path('user_task/',views.user_task),
+    path('user_profile/',views.user_profile)
 ]

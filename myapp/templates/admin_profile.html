@@ -26,7 +26,9 @@
       <p id="profile-pic-desc" class="visually-hidden">Click to upload or change profile picture</p>
       <h1 class="profile-name fs-3 fw-semibold" id="profile-fullname">Alice Johnson</h1>
       <p class="profile-email text-secondary mb-1" id="profile-email">alice.johnson@company.com</p>
+      {% block first%}
       <span class="profile-role badge bg-primary px-3 py-1 fw-semibold" id="profile-role" aria-label="User role">Admin</span>
+      {% endblock %}
     </section>
 
     <!-- EDIT PROFILE FORM -->

@@ -19,3 +19,5 @@ def user_dash(request):
     return render(request,'user_dashboard.html')
 def user_task(request):
     return render(request,'user_task_page.html')
+def user_profile(request):
+    return render(request,'user_profile.html')
