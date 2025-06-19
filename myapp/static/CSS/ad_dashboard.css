@@ -24,6 +24,48 @@ body {
     flex-direction: column;
 }
 
+    /* Styles for the navigation toggle button */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      margin-left: 1rem;
+    }
+
+    .nav-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background-color: #374151;
+      margin: 3px 0;
+      transition: all 0.3s ease;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none; /* Hide the navigation links */
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Adjust based on header height */
+        left: 0;
+        right: 0;
+        background: white;
+        z-index: 1000;
+      }
+
+      nav ul.show {
+        display: flex; /* Show the navigation links when toggled */
+      }
+
+      .nav-toggle {
+        display: flex; /* Show the toggle button */
+      }
+    }
+
+
 /* Link styles */
 a {
   color: #2563eb;
@@ -332,7 +374,7 @@ section > h2 {
 }
 
 /* Responsive tweaks */
-@media (max-width: 700px) {
+/* @media (max-width: 700px) {
   h1.page-title {
     font-size: 36px;
   }
@@ -350,5 +392,57 @@ section > h2 {
   }
   nav ul {
     gap: 0.8rem;
+  }
+} */
+/* Existing styles remain unchanged */
+
+/* Responsive tweaks */
+@media (max-width: 1200px) {
+  .container {
+    padding: 1rem; /* Reduce padding for medium screens */
+  }
+}
+
+@media (max-width: 900px) {
+  h1.page-title {
+    font-size: 36px; /* Adjust title size */
+  }
+  .overview-cards {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust card layout */
+  }
+  .card-list {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust card layout */
+  }
+}
+
+@media (max-width: 600px) {
+  h1.page-title {
+    font-size: 28px; /* Further adjust title size */
+  }
+  .overview-cards {
+    grid-template-columns: 1fr; /* Stack cards vertically */
+  }
+  .card-list {
+    grid-template-columns: 1fr; /* Stack cards vertically */
+  }
+  nav ul {
+    flex-direction: column; /* Stack navigation items vertically */
+    gap: 0.5rem; /* Reduce gap */
+  }
+  .button {
+    width: 100%; /* Make buttons full width */
+    padding: 0.75rem; /* Increase padding for touch targets */
+  }
+}
+
+@media (max-width: 450px) {
+  h1.page-title {
+    font-size: 24px; /* Further adjust title size */
+  }
+  .overview-cards {
+    grid-template-columns: 1fr; /* Ensure single column layout */
+  }
+  .card-list {
+    grid-template-columns: 1fr; /* Ensure single column layout */
   }
 }

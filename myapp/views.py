@@ -23,3 +23,5 @@ def user_profile(request):
     return render(request,'user_profile.html')
 def user_notify(request):
     return render(request,'user_notification_page.html')
+def landing(request):
+    return render(request,'landing_page.html')

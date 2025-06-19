@@ -6,11 +6,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Admin Dashboard - Project Task Management</title>
   <link rel="stylesheet" href="{% static 'CSS/ad_dashboard.css' %}" />
+  <style>
+    /* Styles for the navigation toggle button */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      margin-left: 1rem;
+    }
+
+    .nav-toggle .bar {
+      width: 25px;
+      height: 3px;
+      background-color: #374151;
+      margin: 3px 0;
+      transition: all 0.3s ease;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none; /* Hide the navigation links */
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Adjust based on header height */
+        left: 0;
+        right: 0;
+        background: white;
+        z-index: 1000;
+      }
+
+      nav ul.show {
+        display: flex; /* Show the navigation links when toggled */
+      }
+
+      .nav-toggle {
+        display: flex; /* Show the toggle button */
+      }
+    }
+  </style>
 </head>
 
 <body>
   <header role="banner">
     <div class="logo" aria-label="Project Task Management Logo" tabindex="0">ProjTask</div>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </button>
     <nav role="navigation" aria-label="Main navigation">
       <ul>
         <li><a href="#" aria-current="page">Dashboard</a></li>
@@ -156,6 +203,16 @@
         dropdownMenu.classList.remove('show');
         profileButton.setAttribute('aria-expanded', 'false');
       }
+    });
+
+    // Navigation toggle functionality
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('nav ul');
+
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true' || false;
+      navToggle.setAttribute('aria-expanded', !expanded);
+      navMenu.classList.toggle('show');
     });
   </script>
 </body>

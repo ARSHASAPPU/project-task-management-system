@@ -14,5 +14,6 @@ urlpatterns = [
     path('user_dash/',views.user_dash),
     path('user_task/',views.user_task),
     path('user_profile/',views.user_profile),
-    path('user_notify/',views.user_notify)
+    path('user_notify/',views.user_notify),
+    path('',views.landing)
 ]
