@@ -25,3 +25,5 @@ def user_notify(request):
     return render(request,'user_notification_page.html')
 def landing(request):
     return render(request,'landing_page.html')
+def home(request):
+    return render(request,'home.html')
