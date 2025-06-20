@@ -8,267 +8,7 @@
     <link rel="stylesheet" href="{% static 'CSS/landing.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        :root {
-            --primary: #4f46e5;
-            --primary-light: #6366f1;
-            --secondary: #10b981;
-            --dark: #1e293b;
-            --light: #f8fafc;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-        
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            overflow-x: hidden;
-        }
-        
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
-            overflow: hidden;
-        }
-        
-        .hero-content {
-            max-width: 600px;
-            z-index: 10;
-        }
-        
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: #64748b;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(to right, var(--primary), var(--primary-light));
-            color: white;
-            font-weight: 600;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.3), 0 2px 4px -1px rgba(79, 70, 229, 0.1);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3), 0 4px 6px -2px rgba(79, 70, 229, 0.1);
-        }
-        
-        .features {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-        
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.9rem;
-            color: #64748b;
-        }
-        
-        .feature-item i {
-            color: var(--secondary);
-        }
-        
-        .hero-image {
-            position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40%;
-            max-width: 600px;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(-50%) translateX(0); }
-            50% { transform: translateY(-50%) translateX(-10px); }
-            100% { transform: translateY(-50%) translateX(0); }
-        }
-        
-        .blob {
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
-            filter: blur(60px);
-            z-index: 1;
-        }
-        
-        .blob-1 {
-            top: -200px;
-            right: -200px;
-        }
-        
-        .blob-2 {
-            bottom: -200px;
-            left: -200px;
-        }
-        
-        /* Role selection section styles */
-        .role-selection {
-            position: relative;
-            min-height: 100vh;
-            display: none; /* Initially hidden */
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            background: var(--light);
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        
-        .transition-all {
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-        }
-        
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #5a6fd1 0%, #6a3d9a 100%);
-        }
-        
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-content {
-            background: white;
-            border-radius: 0.5rem;
-            padding: 2rem;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            animation: modalFadeIn 0.3s ease-out;
-        }
-        
-        @keyframes modalFadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        
-        .modal-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-        
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #64748b;
-            transition: color 0.2s;
-        }
-        
-        .close-btn:hover {
-            color: var(--primary);
-        }
-        
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-        
-        /* Responsive styles */
-        @media (max-width: 1024px) {
-            .hero-image {
-                display: none;
-            }
-            
-            .hero-content {
-                max-width: 100%;
-                text-align: center;
-            }
-            
-            .features {
-                justify-content: center;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-            
-            .modal-content {
-                width: 95%;
-                padding: 1.5rem;
-            }
-        }
-    </style>
+    
 </head>
 <body>
     <!-- Hero Section (Initially visible) -->
@@ -362,7 +102,7 @@
                     <div class="space-y-4">
                         <div class="border border-gray-200 rounded-lg p-4 hover:border-indigo-300 transition-all">
                             <h4 class="font-medium text-gray-800">Enterprise Plan</h4>
-                            <p class="text-2xl font-bold text-indigo-600">$299/month</p>
+                            <p class="text-2xl font-bold text-indigo-600">$299/month </p>
                             <ul class="mt-2 text-sm text-gray-600 space-y-1">
                                 <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Unlimited projects</li>
                                 <li><i class="fas fa-check-circle text-green-500 mr-2"></i> Advanced analytics</li>
@@ -401,12 +141,12 @@
         </div>
     </div>
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
+    <!-- User Login Modal -->
+    <div id="userLoginModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">User Login</h3>
-                <button class="close-btn" id="closeLoginModal">&times;</button>
+                <h3 class="modal-title">User  Login</h3>
+                <button class="close-btn" id="closeUser LoginModal">&times;</button>
             </div>
             <form id="userLoginForm" class="space-y-4">
                 <div>
@@ -419,16 +159,30 @@
                     <input type="password" id="userPassword" name="userPassword" required class="w-full px-3 py-2 border border-gray-300 rounded-md mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                 </div>
                 
-                {% comment %} <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <input id="rememberMe" name="rememberMe" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
-                        <label for="rememberMe" class="ml-2 block text-sm text-gray-700">Remember me</label>
-                    </div>
-                    
-                    <div class="text-sm">
-                        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot password?</a>
-                    </div>
-                </div> {% endcomment %}
+                <button type="submit" class="w-full mt-4 py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-200">
+                    Sign In
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="adminLoginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Admin Login</h3>
+                <button class="close-btn" id="closeAdminLoginModal">&times;</button>
+            </div>
+            <form id="adminLoginForm" class="space-y-4">
+                <div>
+                    <label for="adminEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="adminEmail" name="adminEmail" required class="w-full px-3 py-2 border border-gray-300 rounded-md mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
+                
+                <div>
+                    <label for="adminPassword" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="adminPassword" name="adminPassword" required class="w-full px-3 py-2 border border-gray-300 rounded-md mt-1 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                </div>
                 
                 <button type="submit" class="w-full mt-4 py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition duration-200">
                     Sign In
@@ -436,12 +190,12 @@
                 
                 <div class="mt-4 text-center text-sm">
                     Don't have an account? 
-                    <button type="button" id="showRegisterModalFromLogin" class="text-indigo-600 hover:text-indigo-500 font-medium">Register here</button>
+                    <button type="button" id="showAdminRegisterModal" class="text-indigo-600 hover:text-indigo-500 font-medium">Register here</button>
                 </div>
             </form>
         </div>
     </div>
-    
+
     <!-- Registration Modal -->
     <div id="registerModal" class="modal">
         <div class="modal-content">
@@ -491,64 +245,59 @@
     </div>
 
     <script>
-        // Ensure DOM is fully loaded before attaching event listeners
         document.addEventListener('DOMContentLoaded', function() {
-            // Modal functionality
             function showModal(modalId) {
                 document.getElementById(modalId).style.display = 'flex';
-                document.body.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
             }
             
             function hideModal(modalId) {
                 document.getElementById(modalId).style.display = 'none';
-                document.body.style.overflow = 'auto';
+                document.body.style.overflow = 'auto'; // Allow scrolling again
             }
             
-            // Get Started button shows role selection
             document.getElementById('ctaButton').addEventListener('click', function() {
                 document.getElementById('heroSection').style.display = 'none';
                 document.getElementById('roleSelection').style.display = 'flex';
                 window.scrollTo(0, 0);
             });
             
-            // User button shows login modal
             document.getElementById('userBtn').addEventListener('click', function() {
-                showModal('loginModal');
+                showModal('userLoginModal');
             });
             
-            // Admin button shows admin section
             document.getElementById('adminBtn').addEventListener('click', function() {
-                document.getElementById('roleSelection').style.display = 'none';
-                document.getElementById('adminSection').classList.remove('hidden');
-                window.scrollTo(0, 0);
+                document.getElementById('adminSection').style.display = 'block'; // Show premium details
+                document.getElementById('roleSelection').style.display = 'none'; // Hide role selection
             });
             
-            // Free register button shows registration modal
             document.getElementById('freeRegisterBtn').addEventListener('click', function() {
-                showModal('registerModal');
+                showModal('registerModal'); // Show registration modal
             });
             
             // Close buttons for modals
-            document.getElementById('closeLoginModal').addEventListener('click', function() {
-                hideModal('loginModal');
+            document.getElementById('closeUser LoginModal').addEventListener('click', function() {
+                hideModal('userLoginModal');
+            });
+            
+            document.getElementById('closeAdminLoginModal').addEventListener('click', function() {
+                hideModal('adminLoginModal');
             });
             
             document.getElementById('closeRegisterModal').addEventListener('click', function() {
                 hideModal('registerModal');
             });
             
-            // Switch between login and register modals
-            document.getElementById('showRegisterModalFromLogin').addEventListener('click', function() {
-                hideModal('loginModal');
+            document.getElementById('showAdminRegisterModal').addEventListener('click', function() {
+                hideModal('adminLoginModal');
                 showModal('registerModal');
             });
             
             document.getElementById('showLoginModalFromRegister').addEventListener('click', function() {
                 hideModal('registerModal');
-                showModal('loginModal');
+                showModal('adminLoginModal');
             });
             
-            // Close modals when clicking outside
             document.querySelectorAll('.modal').forEach(modal => {
                 modal.addEventListener('click', function(e) {
                     if (e.target === modal) {
@@ -557,24 +306,16 @@
                 });
             });
             
-            // Feature items animation
-            const featureItems = document.querySelectorAll('.feature-item');
-            featureItems.forEach(item => {
-                item.addEventListener('mouseenter', () => {
-                    item.style.transform = 'translateY(-3px)';
-                    item.style.transition = 'transform 0.2s ease';
-                });
-                
-                item.addEventListener('mouseleave', () => {
-                    item.style.transform = 'translateY(0)';
-                });
-            });
-            
-            // Prevent form submission (for demo purposes)
             document.getElementById('userLoginForm').addEventListener('submit', function(e) {
                 e.preventDefault();
-                alert('Login functionality would be implemented here');
-                hideModal('loginModal');
+                alert('User  login functionality would be implemented here');
+                hideModal('userLoginModal');
+            });
+            
+            document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Admin login functionality would be implemented here');
+                hideModal('adminLoginModal');
             });
             
             document.getElementById('registerForm').addEventListener('submit', function(e) {
