@@ -17,5 +17,5 @@ urlpatterns = [
     path('user_notify/',views.user_notify),
     path('',views.home),
     path('landing/',views.landing),
-    path('role/',views.role)
+    path('role/',views.role,name='role')
 ]
