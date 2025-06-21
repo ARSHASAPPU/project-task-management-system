@@ -4,7 +4,7 @@ from django.shortcuts import render
 def register_page(request):
     return render(request,'register.html')
 def login_page(request):
-    return render(request,'login.html')
+    return render(request,'user_login.html')
 def admin_dash(request):
     return render(request,'admin_dashboard.html')
 def admin_project(request):
@@ -29,3 +29,5 @@ def home(request):
     return render(request,'home.html')
 def role(request):
     return render(request,'role.html')
+def admin_access(request):
+    return render(request,'admin_access.html')
