@@ -9,7 +9,7 @@ urlpatterns = [
     path('login/',views.login_page,name='user_login'),
     path('admin_access/',views.admin_access,name='admin_access_page'),
     path('register/',views.register_page,name='register_page'),
-    
+    path('admin_login/',views.admin_login,name='admin_login_page'),
     path('admin_dash/',views.admin_dash),
     path('admin_project/',views.admin_project),
     path('admin_task/',views.admin_task),

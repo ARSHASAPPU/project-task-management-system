@@ -31,3 +31,5 @@ def role(request):
     return render(request,'role.html')
 def admin_access(request):
     return render(request,'admin_access.html')
+def admin_login(request):
+    return render(request,'admin_login.html')
