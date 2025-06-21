@@ -1,4 +1,4 @@
-/* 
+
         :root {
             --primary: #4f46e5;
             --primary-light: #6366f1;
@@ -125,10 +125,10 @@
         }
         
         /* Role selection section styles */
-        /* .role-selection {
+         .role-selection {
             position: relative;
             min-height: 100vh;
-            display: none; /* Initially hidden */
+            display: none; 
             align-items: center;
             justify-content: center;
             padding: 2rem;
@@ -142,7 +142,7 @@
         
         .transition-all {
             transition: all 0.3s ease;
-        }
+        } 
         
         .btn-primary {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -257,4 +257,4 @@
                 width: 95%;
                 padding: 1.5rem;
             }
-        } */ */
+        } 

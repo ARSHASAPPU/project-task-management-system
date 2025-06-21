@@ -15,5 +15,7 @@ urlpatterns = [
     path('user_task/',views.user_task),
     path('user_profile/',views.user_profile),
     path('user_notify/',views.user_notify),
-    path('',views.home)
+    path('',views.home),
+    path('landing/',views.landing),
+    path('role/',views.role)
 ]

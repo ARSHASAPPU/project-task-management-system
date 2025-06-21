@@ -27,3 +27,5 @@ def landing(request):
     return render(request,'landing_page.html')
 def home(request):
     return render(request,'home.html')
+def role(request):
+    return render(request,'role.html')
